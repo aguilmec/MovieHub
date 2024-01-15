@@ -4,6 +4,7 @@ import Grid from "./Grid";
 import { useState } from "react";
 import { HeaderContext } from "../Context/HeaderContext";
 import { useEffect } from "react";
+import { filterByType, filterByGenre } from '../utils/functions';
 
 const movieList = [
     {
@@ -136,36 +137,47 @@ export default function Layout(){
         setMovies(movieUpdater());
     },[filters]);
 
-    function filterByType(newMovieList){
-        if(filters.type === 'Movies & TV Shows'){
-            newMovieList = filterByGenre([...movieList]);
+    function filterByType(newMovieList) {
+        console.log('mierda1')
+        if (filters.type === 'Movies & TV Shows') {
+          if (filters.genre === 'All') {
             return newMovieList;
-        }else{
-            return(newMovieList.filter((movie)=>{
-                if(movie.type === filters.type.toLowerCase()){
-                    return true;
-                }else{
-                    return false;
-                };
-            }));
-        }
-        
-    };
-
-    function filterByGenre(newMovieList){
-        if(filters.genre === 'All'){
-            newMovieList = filterByType([...movieList]);
+          } else {
+            return filterByGenre(newMovieList);
+          }
+        } else {
+          if (filters.type) {
+            return newMovieList.filter((movie) => {
+              if (movie.type === filters.type.toLowerCase()) {
+                return true;
+              } else {
+                return false;
+              };
+            });
+          } else {
             return newMovieList;
-        }else{
-            return(newMovieList.filter((movie)=>{
-                if(movie.genre === filters.genre){
-                    return true;
-                }else{
-                    return false;
-                };
-            }));
+          }
         }
-    };
+      };
+      
+      function filterByGenre(newMovieList) {
+        console.log('mierda2')
+        if (filters.genre === 'All') {
+          return filterByType(newMovieList);
+        } else {
+          if (filters.genre) {
+            return newMovieList.filter((movie) => {
+              if (movie.genre === filters.genre) {
+                return true;
+              } else {
+                return false;
+              };
+            });
+          } else {
+            return newMovieList;
+          }
+        }
+      };
 
     function movieUpdater(){
         let newMovieList = [...movieList];
@@ -186,8 +198,8 @@ export default function Layout(){
         <div className="flex flex-col gap-y-[20px] pb-[1000px]">
             <HeaderContext.Provider value={{ headers, setHeaders }}>
                 <Carrousel featuredFilms={featuredFilms} />
-                <div className="grid grid-cols-12 h-full px-[50px]">
-                    <div className="col-span-3 h-full">
+                <div className="grid grid-cols-12 h-full px-[100px]">
+                    <div className="flex col-span-3 h-full shrink-0">
                         <Filters filters={filters} setFilters={setFilters} movieList={movieList} setMovies={setMovies} movies={movies} />
                     </div>
                     <div className="col-span-9 pr-[70px]">
