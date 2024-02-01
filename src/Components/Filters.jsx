@@ -42,19 +42,19 @@ export default function Filters({ movies, setMovies, movieList, filters, setFilt
                     <button onClick={()=>{
                         setHeaders({...headers, type: 'Movies'});
                         handleFilter('Movies');
-                        }} className='bg-orange-500 font-semibold px-[15px] py-[2px] transition duration-200 text-white rounded-2xl hover:bg-white hover:text-orange-500'>
+                        }} className='text-[15px] bg-orange-500 font-semibold px-[15px] py-[2px] transition duration-200 text-white rounded-2xl hover:bg-white hover:text-orange-500'>
                         Movies
                     </button>
                     <button onClick={()=>{
                         setHeaders({...headers, type: 'TV Shows'});
                         handleFilter('TV Shows');
-                        }} className='bg-orange-500 font-semibold px-[15px] py-[2px] transition duration-200 text-white rounded-2xl hover:bg-white hover:text-orange-500'>
+                        }} className='text-[15px] bg-orange-500 font-semibold px-[15px] py-[2px] transition duration-200 text-white rounded-2xl hover:bg-white hover:text-orange-500'>
                         TV Shows
                     </button>
                     <button onClick={()=>{
                         setHeaders({...headers, type: 'Movies & TV Shows'});
                         handleFilter('Movies & TV Shows');
-                        }} className='bg-orange-500 font-semibold px-[15px] py-[2px] transition duration-200 text-white rounded-2xl hover:bg-white hover:text-orange-500'>
+                        }} className='text-[15px] bg-orange-500 font-semibold px-[15px] py-[2px] transition duration-200 text-white rounded-2xl hover:bg-white hover:text-orange-500'>
                         All
                     </button>
                 </div>

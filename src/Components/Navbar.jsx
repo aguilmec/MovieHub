@@ -1,7 +1,12 @@
 import { IoSearch } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import Tooltip from "./Tooltip";
+import { useState } from "react";
 
 export default function Navbar(){
+
+    const [hovered, setHovered] = useState(false);
+
     return(
         <div className="mt-[10px] px-[70px] z-50 w-full h-[40px] flex flex-row justify-between absolute">
             <div className="cursor-pointer my-auto text-white font-bold text-[22px]">Moviebase</div>
@@ -11,7 +16,8 @@ export default function Navbar(){
                     <IoSearch />
                 </button>
             </div>
-            <button className="my-auto text-[25px] text-slate-200">
+            <button onMouseEnter={()=>{setHovered(true)}} onMouseLeave={()=>{setHovered(false)}} className="my-auto text-[25px] text-slate-200 relative">
+                {hovered && <Tooltip tooltip= 'Profile' />}
                <CgProfile />
             </button>
         </div>

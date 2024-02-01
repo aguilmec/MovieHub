@@ -1,5 +1,6 @@
 import Navbar from './Navbar';
 import { useState } from 'react';
+import StarRatings from 'react-star-ratings'
 
 export default function Carrousel({ featuredFilms }){
     
@@ -12,10 +13,12 @@ export default function Carrousel({ featuredFilms }){
 
     function handleSelected(e, key1, key2, index){
         setCurrentFilm(featuredFilms[index]);
-        setSelected({
-            [key1]:false,
-            [key2]:false,
-            [e.target.name]:true});
+        setSelected(
+            {
+                [key1]:false,
+                [key2]:false,
+                [e.target.name]:true
+            });
     };
 
     return(
@@ -40,9 +43,7 @@ export default function Carrousel({ featuredFilms }){
                     </div>
                 </div>
                 <p className="text-white cursor-default">{currentFilm.description}</p>
-                <div className="cursor-default text-white">
-                    Rating
-                </div>
+                <StarRatings rating={currentFilm.rating} starDimension='15px' starRatedColor='yellow' />
                 <button className=" z-20 bg-orange-500 rounded-xl w-[90px] text-white py-[1px]">Watch</button>
             </div>
         </div>
