@@ -7,7 +7,7 @@ module.exports = {
         roboto: ['Roboto', 'sans-serif'],
       },
       boxShadow: {
-        '3xl': '5px 5px 4px rgba(0, 0, 0, 0.4)',
+        '3xl': '7px 7px 4px rgba(0, 0, 0, 0.2)',
       },
     },
   },

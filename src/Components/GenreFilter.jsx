@@ -21,7 +21,7 @@ export default function GenreFilter({ type, movies, setMovies, movieList, filter
     return(
         <div className="flex flex-row justify-between px-[40px]">
             <p className="cursor-default text-[15px] font-semibold">{type}</p>
-            <input name='genre' value={type} onChange={(e)=>{handleToggle(e)}} className="cursor-pointer" type="radio" />
+            <input name='genre' value={type} onChange={(e)=>{handleToggle(e)}} className="cursor-pointer text-[#A70000] focus:ring-[A#70000]" type="radio" />
         </div>
     );
 };

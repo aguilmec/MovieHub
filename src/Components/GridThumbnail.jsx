@@ -1,7 +1,7 @@
 
 export default function GridThumbnail({ image, name, duration, genre, language }){
     return(
-        <div className='mx-auto flex flex-col w-11/12 opacity-60 transition duration-200 hover:opacity-100'>
+        <div className='mx-auto flex flex-col col-span-2 w-11/12 opacity-60 transition duration-200 hover:opacity-100'>
             <button className='relative flex'>
                 <img onClick={()=>{}} className='cursor-pointer w-full h-[350px] object-cover shadow-3xl rounded-md' src={image} />
             </button>
