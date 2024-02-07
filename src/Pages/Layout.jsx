@@ -1,6 +1,7 @@
-import Grid from "../Components/Grid"
-import MovieInfo from "./MovieInfo"
-import VideoPlayer from "./VideoPlayer"
+import VideoPlayer from '../Pages/VideoPlayer';
+import MovieInfo from '../Pages/MovieInfo';
+import Grid from "../Components/Grid";
+import { useParams } from "react-router-dom";
 
 const movieList = [
     {
@@ -87,21 +88,25 @@ const movieList = [
 
 
 export default function Layout(){
+
+    const {id} = useParams();
+
     return(
-        <div className="grid grid-cols-12 gap-y-[45px]">
-            <div className="flex col-span-12 h-[550px]">
+        <div className="relative grid grid-cols-12 col-span-12 gap-x-[20px]">
+            <div className="absolute inset-x-0 col-span-12">
+                <div id="b" className='w-full h-[606px] opacity-30 flex'>
+                    <img className='w-full h-full object-cover blur-sm' src='https://images.theconversation.com/files/299691/original/file-20191031-187907-1nm9rzn.jpg?ixlib=rb-1.1.0&rect=0%2C128%2C2044%2C1020&q=45&auto=format&w=1356&h=668&fit=crop' />
+                </div>
+            </div>
+            <div className="col-span-6 col-start-2">
                 <VideoPlayer />
+                <div className="col-span-6 col-start-2 mt-[10px]">
+                    <MovieInfo />
+                </div>
             </div>
-            <div className="col-span-2" />
-            <div className="grid col-span-8 ">
-                <MovieInfo />
-            </div>
-            <div className="col-span-2" />
-            <div className="col-span-2" />
-            <div className="col-span-8">
+            <div className="col-span-4 col-start-8 mt-[100px] h-[900px] overflow-y-auto scrollbar scrollbar-w-[3px] scrollbar-h-[2px] scrollbar-thumb-[#A7000055] scrollbar-opacity-50">
                 <Grid movies={movieList} related={true} genre={'Drama'} />
             </div>
-            <div className="col-span-2" />
         </div>
-    )
-}
+    );
+};

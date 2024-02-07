@@ -2,9 +2,7 @@ import Carrousel from "../Components/Carrousel";
 import Filters from "../Components/Filters";
 import Grid from "../Components/Grid";
 import { useState } from "react";
-import { HeaderContext } from "../Context/HeaderContext";
 import { useEffect } from "react";
-import { useContext } from "react";
 import FeaturedSlider from "../Components/FeaturedSlider";
 
 const movieList = [
@@ -127,8 +125,6 @@ const featuredFilms = [
 ];
 
 export default function Home(){
-
-  const {headers, setHeaders} = useContext(HeaderContext);
 
     const [movies, setMovies] = useState(movieList);
 

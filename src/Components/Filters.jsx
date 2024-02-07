@@ -2,8 +2,6 @@ import GenreFilter from './GenreFilter';
 import { useContext, useState } from 'react';
 import { HeaderContext } from '../Context/HeaderContext';
 
-let defaultFilter = 'Movies & TV Shows';
-
 export default function Filters({ movies, setMovies, movieList, filters, setFilters }){
 
     const { headers, setHeaders } = useContext(HeaderContext);

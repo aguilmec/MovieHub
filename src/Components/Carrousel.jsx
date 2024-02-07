@@ -1,4 +1,3 @@
-import Navbar from './Navbar';
 import { useState } from 'react';
 import StarRatings from 'react-star-ratings'
 
@@ -23,7 +22,6 @@ export default function Carrousel({ featuredFilms }){
 
     return(
         <div className="font-roboto flex flex-col w-full relative">
-            <Navbar />
             <div className='flex w-full h-[700px] relative gap-x-[20px]'>
                 <img className="w-full object-cover ml-auto opacity-30 blur-sm" src={currentFilm.image} />
                 <div className='absolute inset-x-0 inset-y-0 grid grid-cols-12 my-auto gap-x-[20px]'>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Linebreak from "./Linebreak";
+import { Link } from "react-router-dom";
 
 const featuredList = [
     {
@@ -206,10 +207,13 @@ export default function FeaturedSlider(){
                 {featured.map((movie)=>{
                     return(
                         <div className='transition ease-in-out delay-25 hover:scale-105 mx-auto flex flex-col w-[220px] opacity-60 transition duration-200 hover:opacity-100'>
-                            <button className='relative flex w-[220px]'>
-                                <img onClick={()=>{/*go to movie page*/}} className='cursor-pointer w-full h-[320px] object-cover shadow-3xl rounded-md' src={movie.image} />
-                            </button>
+                            <Link to={`/movie/${movie.id}`}>
+                                <button className='relative flex w-[220px]'>
+                                    <img className='cursor-pointer w-full h-[320px] object-cover shadow-3xl rounded-md' src={movie.image} />
+                                </button>
                             <button className={`truncate text-left text-white font-roboto font-semibold text-[15px] mt-[9px] w-full`}>{movie.name}</button>
+                            </Link>
+                            
                             <div className='cursor-default flex flex-row gap-x-[30px] text-slate-500 font-roboto text-[13px]'>
                                 <p>{movie.language}</p>
                                 <p>{movie.duration}</p>
