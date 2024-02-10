@@ -1,5 +1,5 @@
-import VideoPlayer from '../Pages/VideoPlayer';
-import MovieInfo from '../Pages/MovieInfo';
+import VideoPlayer from '../Components/VideoPlayer';
+import MovieInfo from '../Components/MovieInfo';
 import Grid from "../Components/Grid";
 import { useParams } from "react-router-dom";
 

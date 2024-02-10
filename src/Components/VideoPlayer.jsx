@@ -1,6 +1,6 @@
 import ReactPlayer from 'react-player';
 import { useState } from "react";
-import PlayPauseButton from "../Components/PlayPauseButton";
+import PlayPauseButton from "./PlayPauseButton";
 
 export default function VideoPlayer(){
 

@@ -12,6 +12,7 @@
     "react-player": "^2.14.1",
     "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
     "react-star-ratings": "^2.3.0",
     "tailwind-scrollbar": "^3.0.5",
     "typeface-roboto": "^1.1.13",

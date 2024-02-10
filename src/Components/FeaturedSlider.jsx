@@ -202,18 +202,17 @@ export default function FeaturedSlider(){
             </div>
             <div className="flex flex-row overflow-x-auto gap-x-[20px] scrollbar scrollbar-w-[1px] pb-[37px] relative">
                 <div className="absolute inset-x-0 inset-y-0">
-                    <div className='sticky absolute z-10 w-full h-full w-[80px] left-0 bg-gradient-to-r from-[#1E1E1E] via-transparent' />
+                    <div className='sticky absolute z-10 h-full w-[100px] left-0 bg-gradient-to-r from-[#1E1E1E] via-transparent' />
                 </div>
                 {featured.map((movie)=>{
                     return(
                         <div className='transition ease-in-out delay-25 hover:scale-105 mx-auto flex flex-col w-[220px] opacity-60 transition duration-200 hover:opacity-100'>
                             <Link to={`/movie/${movie.id}`}>
                                 <button className='relative flex w-[220px]'>
-                                    <img className='cursor-pointer w-full h-[320px] object-cover shadow-3xl rounded-md' src={movie.image} />
+                                    <img className='cursor-pointer w-full h-[320px] object-cover shadow-3xl' src={movie.image} />
                                 </button>
                             <button className={`truncate text-left text-white font-roboto font-semibold text-[15px] mt-[9px] w-full`}>{movie.name}</button>
                             </Link>
-                            
                             <div className='cursor-default flex flex-row gap-x-[30px] text-slate-500 font-roboto text-[13px]'>
                                 <p>{movie.language}</p>
                                 <p>{movie.duration}</p>

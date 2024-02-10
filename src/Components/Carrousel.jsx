@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import StarRatings from 'react-star-ratings'
 
-export default function Carrousel({ featuredFilms }){
+export default function Carrousel({ featured }){
+    console.log(featured,8888888888888888888888888888888888)
     
-    const [currentFilm, setCurrentFilm] = useState(featuredFilms[0]);
+    const [currentFilm, setCurrentFilm] = useState(featured[0]);
     const [selected, setSelected] = useState({
         button1: true,
         button2: false,
@@ -11,7 +12,7 @@ export default function Carrousel({ featuredFilms }){
     });
 
     function handleSelected(e, key1, key2, index){
-        setCurrentFilm(featuredFilms[index]);
+        setCurrentFilm(featured[index]);
         setSelected(
             {
                 [key1]:false,
@@ -23,10 +24,10 @@ export default function Carrousel({ featuredFilms }){
     return(
         <div className="font-roboto flex flex-col w-full relative">
             <div className='flex w-full h-[700px] relative gap-x-[20px]'>
-                <img className="w-full object-cover ml-auto opacity-30 blur-sm" src={currentFilm.image} />
+                <img className="w-full object-cover ml-auto opacity-30 blur-sm" src={currentFilm.cover} />
                 <div className='absolute inset-x-0 inset-y-0 grid grid-cols-12 my-auto gap-x-[20px]'>
                     <div id='a' className='items-center grid grid-cols-6 col-span-6 col-start-2 gap-x-[20px]'>
-                        <img className='col-span-2 h-[400px] object-cover w-11/12 mr-auto shadow-3xl' src={currentFilm.poster}/>
+                        <img className='col-span-2 h-[400px] object-cover w-11/12 mr-auto shadow-3xl' src={currentFilm.image}/>
                         <div className='col-span-4 flex flex-col h-[400px] justify-between'>
                             <p className="cursor-default text-white font-bold text-[24px] leading-6 drop-shadow-md">{currentFilm.name}</p>
                             <div className='flex flex-row'>
