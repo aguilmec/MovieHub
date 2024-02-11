@@ -2,6 +2,9 @@ import VideoPlayer from '../Components/VideoPlayer';
 import MovieInfo from '../Components/MovieInfo';
 import Grid from "../Components/Grid";
 import { useParams } from "react-router-dom";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import GridLoader from 'react-spinners/GridLoader';
 
 const movieList = [
     {
@@ -90,23 +93,42 @@ const movieList = [
 export default function Layout(){
 
     const {id} = useParams();
+    const [movie, setMovie] = useState([]); 
+    const [loading, setLoading] = useState(true);
+
+    useEffect(()=>{
+        async function fetchData(){
+            const response = await fetch(`http://localhost:3500/movie/details/${id}`);
+            const data = await response.json();
+            console.log(data)
+            //movieList = data;
+            setMovie(data);
+            setLoading(false);
+        };
+        fetchData();
+    },[]);
+
+    
 
     return(
-        <div className="relative grid grid-cols-12 col-span-12 gap-x-[20px]">
-            <div className="absolute inset-x-0 col-span-12">
-                <div id="b" className='w-full h-[606px] opacity-30 flex'>
-                    <img className='w-full h-full object-cover blur-sm' src='https://images.theconversation.com/files/299691/original/file-20191031-187907-1nm9rzn.jpg?ixlib=rb-1.1.0&rect=0%2C128%2C2044%2C1020&q=45&auto=format&w=1356&h=668&fit=crop' />
-                </div>
-            </div>
-            <div className="col-span-6 col-start-2">
-                <VideoPlayer />
-                <div className="col-span-6 col-start-2 mt-[10px]">
-                    <MovieInfo />
-                </div>
-            </div>
-            <div className="col-span-4 col-start-8 mt-[100px] h-[900px] overflow-y-auto scrollbar scrollbar-w-[3px] scrollbar-h-[2px] scrollbar-thumb-[#A7000055] scrollbar-opacity-50">
-                <Grid movies={movieList} related={true} genre={'Drama'} />
-            </div>
-        </div>
+        <>
+            {loading ? <div className="flex w-full h-screen justify-center items-center"><GridLoader size={16} color="#A70000" speedMultiplier={0.8} /></div> 
+                :  <div className="relative grid grid-cols-12 col-span-12 gap-x-[20px]">
+                    <div className="absolute inset-x-0 col-span-12">
+                        <div id="b" className='w-full h-[606px] opacity-30 flex'>
+                            <img className='w-full h-full object-cover blur-sm' src={movie.cover} />
+                        </div>
+                    </div>
+                    <div className="col-span-6 col-start-2">
+                        <VideoPlayer url = {`http://localhost:3500/movie/${id}`} />
+                        <div className="col-span-6 col-start-2 mt-[10px]">
+                            <MovieInfo movie={ movie } />
+                        </div>
+                    </div>
+                    <div className="col-span-4 col-start-8 mt-[100px] h-[900px] overflow-y-auto scrollbar scrollbar-w-[3px] scrollbar-h-[2px] scrollbar-thumb-[#A7000055] scrollbar-opacity-50">
+                        <Grid movies={movieList} related={true} genre={'Drama'} />
+                    </div>
+            </div> }
+        </>
     );
 };
