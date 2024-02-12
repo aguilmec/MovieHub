@@ -25,7 +25,7 @@ export default function Grid({ movies, related, genre }){
             </div>
             <div className={related ? 'mx-auto grid col-span-4 grid-cols-4 gap-x-[20px] gap-y-[30px]' : 'mx-auto grid col-span-8 grid-cols-8 gap-x-[20px] gap-y-[30px]'}>
                 {movies.map((movie)=>{
-                    return( <GridThumbnail col-span-2 key={movie.id} id={movie._id} name={movie.name} duration={movie.duration} genre={movie.genre} image={movie.image} language={movie.language} />)
+                    return( <GridThumbnail col-span-2 key={movie._id} id={movie._id} name={movie.name} duration={movie.duration} genre={movie.genre} image={movie.image} language={movie.language} />)
                 })}
             </div>
         </div>

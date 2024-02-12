@@ -7,13 +7,15 @@ import FeaturedSlider from "../Components/FeaturedSlider";
 import GridLoader from "react-spinners/GridLoader";
 
 let movieList = [];
-
 let featuredFilms = [];
+let newMoviesList = [];
 
 export default function Home(){
 
   const [movies, setMovies] = useState([]);
   const [featured, setFeatured] = useState([]);
+  const [newMovies, setNewMovies] = useState([]);
+
   const [loading, setLoading] = useState(true);
 
   const [filters ,setFilters] = useState({
@@ -24,18 +26,20 @@ export default function Home(){
 
   useEffect(()=>{
     async function fetchData(){
-      const response = await fetch('http://localhost:3500/');
-      const data = await response.json();
-      movieList = data.movies;
-      data.featured.map((featuredMovie)=>{
-        data.movies.forEach((movie)=>{
-          if(movie._id === featuredMovie.movieId){
-              featuredFilms.push(movie);
-          };
-        });
-      });
-      setMovies(data.movies);
-      setFeatured(featuredFilms);
+      const movieResponse = await fetch('http://localhost:3500/');
+      const movieData = await movieResponse.json();
+      movieList = movieData;
+      setMovies(movieData);
+
+      const featuredResponse = await fetch('http://localhost:3500/featured');
+      const featuredData = await featuredResponse.json();
+      setFeatured(featuredData);
+
+      const newMovies = await fetch('http://localhost:3500/new');
+      const newMoviesData = await newMovies.json();
+      newMoviesList = newMoviesData;
+      setNewMovies(newMoviesData);
+
       setLoading(false);
     };
     fetchData();
@@ -106,7 +110,7 @@ export default function Home(){
         <>
           <Carrousel featured={featured} />
           <div className="mt-[8px]">
-            <FeaturedSlider />
+            <FeaturedSlider newMoviesList={newMoviesList} setNewMovies={setNewMovies} newMovies={newMovies} />
           </div>
           <div className="grid grid-cols-12 h-full">
               <div className="flex col-span-2 col-start-2 h-full shrink-0">

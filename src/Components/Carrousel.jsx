@@ -2,7 +2,6 @@ import { useState } from 'react';
 import StarRatings from 'react-star-ratings'
 
 export default function Carrousel({ featured }){
-    console.log(featured,8888888888888888888888888888888888)
     
     const [currentFilm, setCurrentFilm] = useState(featured[0]);
     const [selected, setSelected] = useState({
