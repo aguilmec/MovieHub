@@ -1,11 +1,15 @@
-import GridThumbnail from "./GridThumbnail";
-import { useContext } from 'react';
 import { HeaderContext } from '../Context/HeaderContext';
+import GridThumbnail from "./GridThumbnail";
 import Linebreak from "./Linebreak";
+import { useContext } from 'react';
 
-export default function Grid({ movies, related, genre }){
+export default function Grid({ movies, related, setMovie }){
 
     const { headers } = useContext(HeaderContext);
+
+    function handleClick(movie){
+        setMovie(movie);
+    };
 
     return(
         <div className={related ? 'grid gap-y-[20px] grid-cols-4' : 'grid gap-y-[20px] grid-cols-8'}>
@@ -25,7 +29,7 @@ export default function Grid({ movies, related, genre }){
             </div>
             <div className={related ? 'mx-auto grid col-span-4 grid-cols-4 gap-x-[20px] gap-y-[30px]' : 'mx-auto grid col-span-8 grid-cols-8 gap-x-[20px] gap-y-[30px]'}>
                 {movies.map((movie)=>{
-                    return( <GridThumbnail col-span-2 key={movie._id} id={movie._id} name={movie.name} duration={movie.duration} genre={movie.genre} image={movie.image} language={movie.language} />)
+                    return( <GridThumbnail related={related} handleClick={handleClick} movie={movie} col-span-2 key={movie._id} id={movie._id} name={movie.name} duration={movie.duration} genre={movie.genre} image={movie.image} language={movie.language} />)
                 })}
             </div>
         </div>

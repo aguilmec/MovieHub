@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import StarRatings from 'react-star-ratings'
 
 export default function Carrousel({ featured }){
@@ -36,7 +37,7 @@ export default function Carrousel({ featured }){
                             <p className="text-white text-[15px] font-semibold cursor-default drop-shadow-md">{currentFilm.description}</p>
                             <StarRatings rating={currentFilm.rating} starDimension='20px' starRatedColor='#A70000' />
                             <div className='flex flex-row gap-x-[30px]'>
-                                <button className="transition-[bg_200,border_200] duration-200 z-20 bg-transparent text-white border-solid border-[1px] border-white hover:bg-[#A70000] hover:border-transparent hover:text-white text-[11px] font-semibold w-[102px] h-[30px] py-[1px]">Watch Now</button>
+                                <button className="transition-[bg_200,border_200] duration-200 z-20 bg-transparent text-white border-solid border-[1px] border-white hover:bg-[#A70000] hover:border-transparent hover:text-white text-[11px] font-semibold w-[102px] h-[30px] py-[1px]"><Link to={`/movie/${currentFilm._id}`} >Watch Now</Link></button>
                                 <button className="transition-[bg_200-border_200] duration-200 z-20 bg-transparent text-white border-solid border-[1px] border-white hover:bg-[#A70000] hover:border-transparent hover:text-white text-[11px] font-semibold w-[127px] h-[30px] py-[1px]">Add to playlist</button>
                             </div>
                         </div>
