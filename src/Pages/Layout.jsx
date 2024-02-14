@@ -100,15 +100,11 @@ export default function Layout(){
         async function fetchData(){
             const response = await fetch(`http://localhost:3500/movie/details/${id}`);
             const data = await response.json();
-            console.log(data)
-            //movieList = data;
             setMovie(data);
             setLoading(false);
         };
         fetchData();
     },[]);
-
-    
 
     return(
         <>

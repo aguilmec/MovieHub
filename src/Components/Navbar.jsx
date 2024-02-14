@@ -1,13 +1,16 @@
+import { UserContext } from "../Context/UserContext";
 import { IoSearch } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-import Tooltip from "./Tooltip";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { useState } from "react";
+import Tooltip from "./Tooltip";
 
 export default function Navbar(){
 
+    const {currentUser, setCurrentUser} = useContext(UserContext);
     const [hovered, setHovered] = useState(false);
-    const [movie, setMovie] = useState('')
+    const [movie, setMovie] = useState('');
 
     return(
         <div className="mt-[10px] z-50 w-full h-[40px] grid grid-cols-12 justify-between absolute gap-x-[20px]">
@@ -20,10 +23,14 @@ export default function Navbar(){
                     <IoSearch />
                 </button>
             </div>
-            <button onMouseEnter={()=>{setHovered(true)}} onMouseLeave={()=>{setHovered(false)}} className="col-start-11 my-auto text-[25px] text-slate-200 relative w-max">
-                {hovered && <Tooltip tooltip= 'Profile' />}
-               <CgProfile />
-            </button>
+            {currentUser ? (
+                <button onMouseEnter={()=>{setHovered(true)}} onMouseLeave={()=>{setHovered(false)}} className="col-start-11 my-auto text-[25px] text-slate-200 relative w-max">
+                    {hovered && <Tooltip tooltip={currentUser.email} />}
+                    <CgProfile />
+                </button>
+            ) : (
+                <button className="col-start-11 col-span-2 text-white font-[15px] text-left font-semibold"><Link to={'/login'}>Login/signup</Link></button>
+            )}
         </div>
     );
 };

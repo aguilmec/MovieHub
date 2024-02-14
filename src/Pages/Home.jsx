@@ -1,13 +1,14 @@
+import FeaturedSlider from "../Components/FeaturedSlider";
+import { UserContext } from "../Context/UserContext";
+import GridLoader from "react-spinners/GridLoader";
 import Carrousel from "../Components/Carrousel";
 import Filters from "../Components/Filters";
 import Grid from "../Components/Grid";
-import { useState } from "react";
+import { useContext } from "react"; 
 import { useEffect } from "react";
-import FeaturedSlider from "../Components/FeaturedSlider";
-import GridLoader from "react-spinners/GridLoader";
+import { useState } from "react";
 
 let movieList = [];
-let featuredFilms = [];
 let newMoviesList = [];
 
 export default function Home(){
@@ -15,8 +16,9 @@ export default function Home(){
   const [movies, setMovies] = useState([]);
   const [featured, setFeatured] = useState([]);
   const [newMovies, setNewMovies] = useState([]);
-
   const [loading, setLoading] = useState(true);
+
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const [filters ,setFilters] = useState({
       genre: '',
@@ -24,8 +26,19 @@ export default function Home(){
       type: ''
   });
 
+  
+
   useEffect(()=>{
     async function fetchData(){
+      const userVerification = await fetch('http://localhost:3500/verify', {credentials: 'include', withCredentials: true});
+      const userData = await userVerification.json();
+      if(!userData.error){
+        console.log(userData)
+        setCurrentUser({id: userData.id, email: userData.email});
+      }else{
+        setCurrentUser(null);
+      };
+
       const movieResponse = await fetch('http://localhost:3500/');
       const movieData = await movieResponse.json();
       movieList = movieData;
