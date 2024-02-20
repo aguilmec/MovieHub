@@ -1,11 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../Context/UserContext';
 
-
 const inputConfig = {'email':{type: 'text', placeholder: 'email@email.com'}, 'password':{type: 'password', placeholder: 'password...'}};
 const initialValue = {current: '', new: '', confirmation: ''};
 
-export default function EditProfileForm({ user }){
+export default function EditProfileForm({ user, toast, setToast }){
     
     const [newInformation, setNewInformation] = useState(initialValue);
     const [element, setElement] = useState('email');
@@ -38,12 +37,12 @@ export default function EditProfileForm({ user }){
                 }else{
                     const response = await fetch('http://localhost:3500/update/password', options);
                 }
-                //update successfull
+                setToast({visible: true, message: 'Profile updated successfully!'});
             }catch(error){
-                //update not successfull
+                setToast({visible: true, message: 'There has been an error performing this operation!'});
             }
         }else{
-            //inputs dont match!
+            setToast({visible: true, message: `The ${element}s dont match!`});
         }
     };
 

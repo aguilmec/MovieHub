@@ -7,6 +7,7 @@ import Grid from "../Components/Grid";
 import { useContext } from "react"; 
 import { useEffect } from "react";
 import { useState } from "react";
+import Toast from "../Components/Toast";
 
 let movieList = [];
 let newMoviesList = [];
@@ -17,6 +18,7 @@ export default function Home(){
   const [loading, setLoading] = useState(true);
   const [featured, setFeatured] = useState([]);
   const [newMovies, setNewMovies] = useState([]);
+  const [toast, setToast] = useState({visible: false, message:''});
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
@@ -118,10 +120,10 @@ export default function Home(){
   };
 
   return(
-    <>
+    <div className="relative">
       {loading ? <div className="flex w-full h-screen justify-center items-center"><GridLoader size={16} color="#A70000" speedMultiplier={0.8} /></div> : (
         <>
-          <Carrousel featured={featured} />
+          <Carrousel featured={featured} toast={toast} setToast={setToast} />
           <div className="mt-[8px]">
             <FeaturedSlider newMoviesList={newMoviesList} setNewMovies={setNewMovies} newMovies={newMovies} />
           </div>
@@ -135,6 +137,7 @@ export default function Home(){
           </div>
         </>
       )}
-    </>
+      {toast.visible ? <Toast toast={toast} setToast={setToast} /> : null}
+    </div>
   );
 };

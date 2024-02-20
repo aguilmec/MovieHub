@@ -1,11 +1,12 @@
 import EditProfileForm from "./EditProfileForm";
-import { useState } from "react";
 import SavedTab from "./SavedTab";
+import { useState } from "react";
+import Toast from "./Toast";
 
 const classNames = {selected: 'text-[14px] py-[3px] w-full h-full cursor-pointer bg-[#A70000] border-solid border-[1px] border-[#A70000] text-white font-semibold',
                     notSelected: 'text-[14px] py-[3px] w-full h-full cursor-pointer bg-transparent border-solid border-[1px] border-white text-white font-semibold'}
 
-export default function ProfileTab({ user }){
+export default function ProfileTab({ user, toast, setToast }){
 
     const [editProfile, setEditProfile] = useState(true);
 
@@ -15,7 +16,7 @@ export default function ProfileTab({ user }){
                 <button onClick={()=>{setEditProfile(true)}} className={editProfile ? classNames.selected : classNames.notSelected}>User profile</button>
                 <button onClick={()=>{setEditProfile(false)}} className={!editProfile ? classNames.selected : classNames.notSelected}>Watch later</button>
             </div>
-            {editProfile ? <EditProfileForm user={user} /> : <SavedTab user={user} />}
+            {editProfile ? <EditProfileForm user={user} toast={toast} setToast={setToast} /> : <SavedTab user={user} toast={toast} setToast={setToast} />}
         </div>
     );
 };

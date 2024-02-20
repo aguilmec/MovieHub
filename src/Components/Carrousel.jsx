@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { useState } from 'react';
 
-export default function Carrousel({ featured }){
+export default function Carrousel({ featured, toast, setToast }){
     
     const [currentFilm, setCurrentFilm] = useState(featured[0]);
     const [selected, setSelected] = useState({
@@ -26,7 +26,7 @@ export default function Carrousel({ featured }){
         if(currentUser){
             const verify = await fetch('/verify',{withCredentials: true,  credentials: 'include'});
             if(verify.status === 200){
-                const response = fetch('http://localhost:3500/saveMovie',{
+                const response = await fetch('http://localhost:3500/saveMovie',{
                     method: 'POST',
                     body: JSON.stringify({movieId: currentFilm._id, userId: currentUser.id}),
                     credentials: 'include',
@@ -34,15 +34,16 @@ export default function Carrousel({ featured }){
                     headers: {'Content-Type':'application/json'}
                 });
                 if(response.status ===200){
-                    //saved correctly
+                    setToast({visible: true, message: 'Movie saved successfully!'});
                 }else{
+                    setToast({visible: true, message: 'There has been an error, please try again.'});
                 }
             }else{
-                //handle error: credentials invalid
+                setToast({visible: true, message: 'Could not perform this operation, plese log in.'});
             }
         }else{
-            //handle error: user not logged in
-        }
+            setToast({visible: true, message: 'You need to log in in in order to perform this operation.'})
+        };
     };
 
     return(
