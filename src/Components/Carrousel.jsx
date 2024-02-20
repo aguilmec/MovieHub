@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { UserContext } from '../Context/UserContext';
+import { useNavigate } from 'react-router-dom';
+import StarRatings from 'react-star-ratings';
 import { Link } from 'react-router-dom';
-import StarRatings from 'react-star-ratings'
+import { useContext } from 'react';
+import { useState } from 'react';
 
 export default function Carrousel({ featured }){
     
@@ -11,14 +14,35 @@ export default function Carrousel({ featured }){
         button3:false,
     });
 
+    const { currentUser, setCurrentUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
     function handleSelected(e, key1, key2, index){
         setCurrentFilm(featured[index]);
-        setSelected(
-            {
-                [key1]:false,
-                [key2]:false,
-                [e.target.name]:true
-            });
+        setSelected({[key1]: false, [key2]: false, [e.target.name]: true });
+    };
+
+    async function handleSave(){
+        if(currentUser){
+            const verify = await fetch('/verify',{withCredentials: true,  credentials: 'include'});
+            if(verify.status === 200){
+                const response = fetch('http://localhost:3500/saveMovie',{
+                    method: 'POST',
+                    body: JSON.stringify({movieId: currentFilm._id, userId: currentUser.id}),
+                    credentials: 'include',
+                    withCredentials: true,
+                    headers: {'Content-Type':'application/json'}
+                });
+                if(response.status ===200){
+                    //saved correctly
+                }else{
+                }
+            }else{
+                //handle error: credentials invalid
+            }
+        }else{
+            //handle error: user not logged in
+        }
     };
 
     return(
@@ -38,7 +62,7 @@ export default function Carrousel({ featured }){
                             <StarRatings rating={currentFilm.rating} starDimension='20px' starRatedColor='#A70000' />
                             <div className='flex flex-row gap-x-[30px]'>
                                 <button className="transition-[bg_200,border_200] duration-200 z-20 bg-transparent text-white border-solid border-[1px] border-white hover:bg-[#A70000] hover:border-transparent hover:text-white text-[11px] font-semibold w-[102px] h-[30px] py-[1px]"><Link to={`/movie/${currentFilm._id}`} >Watch Now</Link></button>
-                                <button className="transition-[bg_200-border_200] duration-200 z-20 bg-transparent text-white border-solid border-[1px] border-white hover:bg-[#A70000] hover:border-transparent hover:text-white text-[11px] font-semibold w-[127px] h-[30px] py-[1px]">Add to playlist</button>
+                                <button onClick={()=>{handleSave()}} className="transition-[bg_200-border_200] duration-200 z-20 bg-transparent text-white border-solid border-[1px] border-white hover:bg-[#A70000] hover:border-transparent hover:text-white text-[11px] font-semibold w-[127px] h-[30px] py-[1px]">Add to playlist</button>
                             </div>
                         </div>
                     </div>

@@ -24,10 +24,10 @@ export default function Navbar(){
                 </button>
             </div>
             {currentUser ? (
-                <button onMouseEnter={()=>{setHovered(true)}} onMouseLeave={()=>{setHovered(false)}} className="col-start-11 my-auto text-[25px] text-slate-200 relative w-max">
+                <Link to={`/profile/${currentUser.id}`} onMouseEnter={()=>{setHovered(true)}} onMouseLeave={()=>{setHovered(false)}} className="col-start-11 my-auto text-[25px] text-slate-200 relative w-max">
                     {hovered && <Tooltip tooltip={currentUser.email} />}
                     <CgProfile />
-                </button>
+                </Link>
             ) : (
                 <button className="col-start-11 col-span-2 text-white font-[15px] text-left font-semibold"><Link to={'/login'}>Login/signup</Link></button>
             )}

@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Linebreak from "./Linebreak";
 import { Link } from "react-router-dom";
+import Linebreak from "./Linebreak";
+import { useState } from "react";
 
 export default function FeaturedSlider({ newMoviesList, newMovies, setNewMovies }){
 

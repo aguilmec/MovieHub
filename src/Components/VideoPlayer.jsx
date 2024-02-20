@@ -1,12 +1,11 @@
+import PlayPauseButton from "./PlayPauseButton";
 import ReactPlayer from 'react-player';
 import { useState } from "react";
-import PlayPauseButton from "./PlayPauseButton";
 
 export default function VideoPlayer({ url }){
 
     const [isVisible, setIsVisible] = useState(true);
     const [isPlaying, setIsPlaying] = useState(false);
-
 
     return(
         <div onMouseLeave={()=>{setIsVisible(false)}} onMouseEnter={()=>{setIsVisible(true)}} className='mt-[100px] flex col-span-6 col-start-2 place-items-center h-[480px] relative'>

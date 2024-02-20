@@ -1,6 +1,6 @@
-import GenreFilter from './GenreFilter';
-import { useContext, useState } from 'react';
 import { HeaderContext } from '../Context/HeaderContext';
+import { useContext, useState } from 'react';
+import GenreFilter from './GenreFilter';
 
 export default function Filters({ movies, setMovies, movieList, filters, setFilters }){
 

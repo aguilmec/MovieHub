@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { UserContext } from "../Context/UserContext";
 import { useNavigate, Link } from "react-router-dom";
-
 import image1 from '../images/starwars.avif';
+import { useState, useContext } from "react";
 
 export default function Login(){
+
+    const { currentUser, setCurrentUser } = useContext(UserContext);
 
     const [user, setUser] = useState({
         email: '',
@@ -21,8 +23,13 @@ export default function Login(){
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({email: user.email,password: user.password}),
         });
-        const data = await response.json();
-        navigate('/');
+        if(response.status === 200){
+            const userData = await response.json();
+            setCurrentUser({id: userData.id, email: userData.email});
+            navigate('/');
+        }else{
+            console.error('There has been an error, please try again.');
+        };
     };
 
     return (
