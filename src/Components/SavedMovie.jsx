@@ -1,7 +1,19 @@
 import { IoStarSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-export default function SavedMovie({ movie }){
+export default function SavedMovie({ movie, user, setUser }){
+
+    async function handleRemove(){
+        const response = await fetch('http://localhost:3500/remove/movie', {
+            method: 'POST',
+            credentials: 'include',
+            withCredentials: true,
+            body: JSON.stringify({id: user._id, movieId: movie._id}),
+            headers: {'Content-Type': 'application/json'}
+        });
+        const newSaved = await response.json();
+        setUser({...user, saved: newSaved.saved});
+    };
 
     return(
         <div className="flex flex-col col-span-2 font-roboto">
@@ -16,7 +28,7 @@ export default function SavedMovie({ movie }){
                     </div>
                     <div className='flex gap-x-[20px]'>
                         <button className="border-solid w-full border-[1px] border-white hover:border-[1px] hover:border-[#A70000] transition-[bg_200,border_200] duration-200 z-20 bg-transparent text-white hover:bg-[#A70000] hover:border-transparent hover:text-white text-[12px] px-[12px] py-[2px] text-center"><Link to={`/movie/${movie._id}`}>Play</Link></button>
-                        <button className="border-solid w-full border-[1px] border-white hover:border-[1px] hover:border-[#A70000] transition-[bg_200-border_200] duration-200 z-20 bg-transparent text-white hover:bg-[#A70000] hover:border-transparent hover:text-white text-[12px] px-[12px] py-[2px] text-center">Remove</button>
+                        <button onClick={()=>{handleRemove()}} className="border-solid w-full border-[1px] border-white hover:border-[1px] hover:border-[#A70000] transition-[bg_200-border_200] duration-200 z-20 bg-transparent text-white hover:bg-[#A70000] hover:border-transparent hover:text-white text-[12px] px-[12px] py-[2px] text-center">Remove</button>
                     </div>
                 </div>
             </div>

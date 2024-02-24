@@ -131,7 +131,7 @@ export default function Home(){
               <div className="flex col-span-2 col-start-2 h-full shrink-0">
                   <Filters filters={filters} setFilters={setFilters} movieList={movieList} setMovies={setMovies} movies={movies} />
               </div>
-              <div className="col-span-8">
+              <div className="col-span-8 mb-[45px]">
                   <Grid filters={filters} movies={movies} related={false}/>
               </div>
           </div>

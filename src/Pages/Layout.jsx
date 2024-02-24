@@ -43,7 +43,7 @@ export default function Layout(){
                             <MovieInfo movie={ movie } />
                         </div>
                     </div>
-                    <div className="col-span-4 col-start-8 mt-[100px] h-[900px] overflow-y-auto scrollbar scrollbar-w-[3px] scrollbar-h-[2px] scrollbar-thumb-[#A7000055] scrollbar-opacity-50">
+                    <div className="mb-[45px] col-span-4 col-start-8 mt-[100px] h-[900px] overflow-y-auto scrollbar scrollbar-w-[3px] scrollbar-h-[2px] scrollbar-thumb-[#A7000055] scrollbar-opacity-50">
                         <Grid setMovie={setMovie} movies={movieList} related={true} genre={'Drama'} />
                     </div>
             </div> }
