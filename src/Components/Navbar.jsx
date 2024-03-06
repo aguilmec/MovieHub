@@ -1,4 +1,5 @@
 import { UserContext } from "../Context/UserContext";
+import { IoIosLogOut } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
@@ -12,6 +13,15 @@ export default function Navbar(){
     const [hovered, setHovered] = useState(false);
     const [movie, setMovie] = useState('');
 
+    async function handleLogout(){
+        try{
+            await fetch('http://localhost:3500/logout', {method: 'GET', credentials: 'include', withCredentials: true});
+            setCurrentUser(null);
+        }catch(error){
+            console.error(error)
+        }
+    };
+
     return(
         <div className="mt-[10px] z-50 w-full h-[40px] grid grid-cols-12 justify-between absolute gap-x-[20px]">
             <Link className="col-start-2" to={'/'}>
@@ -24,12 +34,15 @@ export default function Navbar(){
                 </button>
             </div>
             {currentUser ? (
-                <Link to={`/profile/${currentUser.id}`} onMouseEnter={()=>{setHovered(true)}} onMouseLeave={()=>{setHovered(false)}} className="col-start-11 my-auto text-[25px] text-slate-200 relative w-max">
-                    {hovered && <Tooltip tooltip={currentUser.email} />}
-                    <CgProfile />
-                </Link>
+                <div className="flex col-start-11 my-auto text-[25px] text-slate-200 w-max gap-x-[25px]">
+                    <Link to={`/profile/${currentUser.id}`} onMouseEnter={()=>{setHovered(true)}} onMouseLeave={()=>{setHovered(false)}} className="relative w-max">
+                        {hovered && <Tooltip tooltip={currentUser.email} />}
+                        <CgProfile />
+                    </Link>
+                    <Link to='/' onClick={()=>{handleLogout()}}><IoIosLogOut /></Link>
+                </div>
             ) : (
-                <button className="col-start-11 col-span-2 text-white font-[15px] text-left font-semibold"><Link to={'/login'}>Login/signup</Link></button>
+                <button className="col-start-11 col-span-1 w-max text-white font-[15px] text-left font-semibold"><Link to={'/login'}>Login/signup</Link></button>
             )}
         </div>
     );
