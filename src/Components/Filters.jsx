@@ -29,8 +29,8 @@ export default function Filters({ movies, setMovies, movieList, filters, setFilt
             <div className="flex flex-col w-full gap-y-[10px]">
                 <p className="cursor-default text-white font-bold text-[24px]">Filters</p>
             </div>
-            <div className='flex flex-col gap-y-[8px]'>
-                <p className='cursor-default font-semibold text-[15px] mb-[10px]'>Genres</p>
+            <p className='cursor-default font-semibold text-[15px] xl:mb-[10px] lg:mb-[0px] md:mb-[0px] sm:mb-[0px] xs:mb-[0px]'>Genres</p>
+            <div className='flex xl:flex-col lg:flex-row md:flex-row sm:flex-row xs:flex-row xl:gap-y-[8px] lg:justify-between md:justify-between sm:justify-between xs:flex-wrap xs:justify-between'>
                 <GenreFilter setFilters={setFilters} filters={filters} movieList={movieList} movies={movies} setMovies={setMovies}  type={'All'} checked={true} />
                 <GenreFilter setFilters={setFilters} filters={filters} movieList={movieList} movies={movies} setMovies={setMovies} type={'Action'} checked={false} />
                 <GenreFilter setFilters={setFilters} filters={filters} movieList={movieList} movies={movies} setMovies={setMovies} type={'Drama'} checked={false} />
@@ -38,9 +38,9 @@ export default function Filters({ movies, setMovies, movieList, filters, setFilt
                 <GenreFilter setFilters={setFilters} filters={filters} movieList={movieList} movies={movies} setMovies={setMovies} type={'Horror'} checked={false} />
                 <GenreFilter setFilters={setFilters} filters={filters} movieList={movieList} movies={movies} setMovies={setMovies} type={'Scifi'} checked={false} />           
             </div>
-            <div className='flex flex-col gap-y-[8px]'>
+            <div className='flex flex-col gap-y-[8px] lg:mb-[30px] md:mb-[30px] sm:mb-[30px] xs:mb-[30px]'>
                 <p className='cursor-default font-semibold text-[15px] mb-[10px]'>Type</p>
-                <div className='w-full gap-x-[20px] grid grid-cols-2 justify-between gap-y-[13px]'>
+                <div className='w-full gap-x-[20px] grid xl:grid-cols-2 lg:grid-cols-10 md:grid-cols-7 sm:grid-cols-5 xs:grid-cols-4 justify-between gap-y-[13px]'>
                     <button onClick={()=>{
                         setHeaders({...headers, type: 'Movies'});
                         handleFilter('Movies', 'TV Shows', 'Movies & TV Shows');

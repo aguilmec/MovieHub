@@ -128,10 +128,10 @@ export default function Home(){
             <FeaturedSlider newMoviesList={newMoviesList} setNewMovies={setNewMovies} newMovies={newMovies} />
           </div>
           <div className="grid grid-cols-12 h-full">
-              <div className="flex col-span-2 col-start-2 h-full shrink-0">
+              <div className="flex xl:flex-col xl:col-span-2 lg:col-span-10 md:col-span-10 sm:col-span-10 xs:col-span-10 xl:col-start-2 lg:col-start-2 md:col-start-2 sm:col-start-2 xs:col-start-2 h-full ">
                   <Filters filters={filters} setFilters={setFilters} movieList={movieList} setMovies={setMovies} movies={movies} />
               </div>
-              <div className="col-span-8 mb-[45px]">
+              <div className="xl:col-span-8 lg:col-span-10 lg:col-start-2 md:col-span-10 md:col-start-2 sm:col-start-2 sm:col-span-10 xs:col-start-2 xs:col-span-10 mb-[45px]">
                   <Grid filters={filters} movies={movies} related={false}/>
               </div>
           </div>

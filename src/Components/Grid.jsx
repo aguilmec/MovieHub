@@ -20,14 +20,14 @@ export default function Grid({ movies, related, setMovie }){
                     </div>
                 ) : (
                     <div className="flex flex-row col-span-8">
-                        <p className="cursor-default text-white font-bold text-[24px] text-nowrap pr-[20px]">{`Explore: ${headers.type}`}</p>
+                        <p className="cursor-default text-white font-bold xl:text-[24px] lg:text-[24px] md:text-[22px] sm:text-[22px] xs:text-[20px] text-nowrap pr-[20px]">{`Explore: ${headers.type}`}</p>
                         <Linebreak />
                         <p className="cursor-default text-white font-bold text-[24px] ml-auto pl-[20px]">{headers.genre}</p>
                     </div>
                 )}
                 
             </div>
-            <div className={related ? 'mx-auto grid col-span-4 w-full grid-cols-4 gap-x-[20px] gap-y-[30px]' : 'mx-auto w-full grid col-span-8 grid-cols-8 gap-x-[20px] gap-y-[30px]'}>
+            <div className={related ? 'mx-auto grid col-span-4 w-full grid-cols-4 gap-x-[20px] gap-y-[30px]' : 'mx-auto w-full grid col-span-8 xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-2 gap-x-[20px] gap-y-[30px]'}>
                 {movies.map((movie)=>{
                     return( <GridThumbnail related={related} handleClick={handleClick} movie={movie} col-span-2 key={movie._id} id={movie._id} name={movie.name} duration={movie.duration} genre={movie.genre} image={movie.image} language={movie.language} />)
                 })}
