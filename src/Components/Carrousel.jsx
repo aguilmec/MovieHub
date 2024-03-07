@@ -47,11 +47,11 @@ export default function Carrousel({ featured, toast, setToast }){
 
     return(
         <div className="font-roboto flex flex-col w-full relative">
-            <div className='flex w-full xl:h-[700px] lg:h-[700px] md:h-[700px] sm:h-[700px] xs:h-[825px] relative gap-x-[20px]'>
+            <div className='flex w-full xl:h-[700px] lg:h-[700px] md:h-[700px] sm:h-[700px] xs:h-[840px] relative gap-x-[20px]'>
                 <img className="w-full object-cover ml-auto opacity-30 blur-sm" src={currentFilm.cover} />
                 <div className='absolute inset-x-0 inset-y-0 grid grid-cols-12 my-auto gap-x-[20px]'>
                     <div className='items-center grid xl:grid-cols-6 xl:col-span-6 xl:col-start-2 gap-x-[20px] lg:col-span-7 lg:grid-cols-7 lg:col-start-2 md:col-span-9 md:grid-cols-9 md:col-start-2 sm:col-span-9 sm:grid-cols-9 sm:col-start-2 xs:col-span-10 xs:grid-cols-10 xs:col-start-2'>
-                        <img className='xl:col-span-2 xl:h-[400px] lg:h-[400px] md:h-[400px] sm:h-[400px] xs:h-[325px] object-cover xl:w-11/12 lg:w-11/12 md:w-11/12 sm:w-11/12 xs:w-full mr-auto shadow-3xl lg:col-span-3 md:col-span-4 sm:col-span-4 xs:col-span-6 xs:col-start-3 xl:mt-[0px] xl:mb-[0px] lg:mt-[0px] lg:mb-[0px] md:mt-[0px] md:mb-[0px] sm:mt-[0px] sm:mb-[0px] xs:mt-[80px] xs:mb-[0px] ' src={currentFilm.image}/>
+                        <img className='xl:col-span-2 xl:h-[400px] lg:h-[400px] md:h-[400px] sm:h-[400px] xs:h-[325px] object-cover xl:w-11/12 lg:w-11/12 md:w-11/12 sm:w-11/12 xs:w-full mr-auto shadow-3xl lg:col-span-3 md:col-span-4 sm:col-span-4 xs:col-span-6 xs:col-start-3 xl:mt-[0px] xl:mb-[0px] lg:mt-[0px] lg:mb-[0px] md:mt-[0px] md:mb-[0px] sm:mt-[0px] sm:mb-[0px] xs:mt-[100px] xs:mb-[0px] ' src={currentFilm.image}/>
                         <div className='flex xl:absolute lg:absolute md:absolute sm:absolute z-10 w-full inset-y-0 xl:inset-x-0 lg:inset-x-0 md:inset-x-0 sm:inset-x-0 xs:inset-x-0 xs:relative xs:col-span-10'>
                             <div className='flex xl:flex-col lg:flex-col md:flex-col sm:flex-col xs:flex-row justify-between z-20 xl:my-auto lg:my-auto md:my-auto sm:my-auto xs:w-max xl:ml-auto lg:ml-auto md:ml-auto sm:ml-auto xs:ml-auto xl:mr-0 lg:mr-0 md:mr-0 sm:mr-0  xs:mr-auto xl:pr-[50px] lg:pr-[50px] md:pr-[50px] sm:pr-[50px] xs:pr-[0px] gap-y-[15px] xs:gap-x-[30px]'>
                                 <button name='button1' onClick={(e)=>{handleSelected(e, 'button2', 'button3', 0)}} className={`${!selected.button1 && 'opacity-10 bg-white'} bg-[#A70000] xl:py-[15px] lg:py-[15px] md:py-[15px] sm:py-[15px] xs:py-[5px] xl:w-[5px] lg:w-[5px] md:w-[5px] sm:w-[5px] xs:w-[35px] xs:gap-x-[20px]`}></button>
@@ -59,7 +59,7 @@ export default function Carrousel({ featured, toast, setToast }){
                                 <button name='button3' onClick={(e)=>{handleSelected(e, 'button1', 'button2', 2)}} className={`${!selected.button3 && 'opacity-10 bg-white'} bg-[#A70000] xl:py-[15px] lg:py-[15px] md:py-[15px] sm:py-[15px] xs:py-[5px] xl:w-[5px] lg:w-[5px] md:w-[5px] sm:w-[5px] xs:w-[35px] xs:gap-x-[20px]`}></button>
                             </div>
                         </div>
-                        <div className='xl:col-span-4 lg:col-span-4 flex flex-col xl:h-[400px] lg:h-[400px] md:h-[400px] sm:h-[400px] xs:h-[320px] justify-between md:col-span-5 sm:col-span-5 xs:col-span-10'>
+                        <div className='xl:col-span-4 lg:col-span-4 flex flex-col xl:h-[400px] lg:h-[400px] md:h-[400px] sm:h-[400px] xs:h-[360px] justify-between md:col-span-5 sm:col-span-5 xs:col-span-10'>
                             <p className="cursor-default text-white font-bold xl:text-[24px] lg:text-[24px] md:text-[24px] sm:text-[24px] xs:text-[20px] leading-6 drop-shadow-md">{currentFilm.name}</p>
                             <div className='flex flex-row'>
                                 <div className='bg-[#A70000] h-[20px] w-[7px]' />
