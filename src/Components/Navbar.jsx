@@ -12,7 +12,7 @@ export default function Navbar(){
 
     const {currentUser, setCurrentUser} = useContext(UserContext);
     const [hovered, setHovered] = useState(false);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
     const [movie, setMovie] = useState('');
     
     async function handleLogout(){
@@ -30,7 +30,7 @@ export default function Navbar(){
                 <button className="cursor-pointer col-span-3 my-auto font-black xl:text-[32px] lg:text-[32px] md:text-[30px] sm:text-[28px] xs:text-[28px] text-[#A70000] drop-shadow-lg">MOVIEBASE</button>
             </Link>
             <div className="xl:hidden lg:hidden md:hidden sm:hidden xs:visible xs:col-start-10 my-auto text-[#A70000] font-bold text-[25px]">
-                <button onClick={()=>{setVisible(!visible); console.log(44444444)}}><RxHamburgerMenu /></button>
+                <button onClick={()=>{setVisible(!visible)}}><RxHamburgerMenu /></button>
             </div>
             <div className={`my-auto grid xl:grid-cols-10 lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 xs:grid-cols-7 xl:col-span-4 lg:col-span-4 sm:col-span-4 md:col-span-4 xl:col-start-6 lg:col-start-6 md:col-start-6 sm:col-start-6 ${visible ? 'xs:visible xs:col-span-7 xs:col-start-2' : 'xs:hidden'}`}>
                 <input onChange={(e)=>{setMovie(e.target.value)}} value={movie} className="xl:col-span-9 lg:col-span-10 md:col-span-10 sm:col-span-9 xs:col-span-5 text-[16px] bg-opacity-40 bg-[#989898] h-[38px] border-r-0 text-slate-200 pl-[15px] py-[5px] text-[D9D9D9]" type="text" placeholder="Search..." />
@@ -39,7 +39,7 @@ export default function Navbar(){
                 </button>
             </div>
             {currentUser ? (
-                <div className= {`flex xl:col-start-11 lg:col-start-11 md:col-start-11 sm:col-start-11 my-auto text-[25px] text-slate-200 w-max gap-x-[25px] ${visible ? 'xs:visible xs:col-span-3 xs:bg-blue-200' : 'xs:hidden'}`} >
+                <div className= {`flex xl:col-start-11 lg:col-start-11 md:col-start-11 sm:col-start-11 my-auto text-[25px] text-slate-200 w-max gap-x-[25px] ${visible ? 'xs:visible xs:col-span-3' : 'xs:hidden'}`} >
                     <Link to={`/profile/${currentUser.id}`} onMouseEnter={()=>{setHovered(true)}} onMouseLeave={()=>{setHovered(false)}} className="relative w-max">
                         {hovered && <Tooltip tooltip={currentUser.email} />}
                         <CgProfile />
